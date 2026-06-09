@@ -1,251 +1,364 @@
-# Klinik Digital Web Service
+# 🏥 Klinik Digital Web Service
 
-REST API untuk sistem manajemen klinik digital yang dibangun menggunakan Laravel dan MySQL.
+REST API Klinik Digital menggunakan Laravel 12, MySQL, dan JWT Authentication untuk mengelola data pasien, dokter, jadwal praktik, janji temu, serta rekam medis.
 
-## Deskripsi Proyek
+---
 
-Klinik Digital Web Service adalah layanan REST API yang digunakan untuk mengelola data pasien, dokter, jadwal praktik, janji temu (appointment), rekam medis, serta aktivitas sistem.
+## 📌 Deskripsi Proyek
 
-Proyek ini dibuat untuk memenuhi tugas UAS Mata Kuliah Web Service.
+Klinik Digital Web Service merupakan layanan backend berbasis REST API yang digunakan untuk mendukung sistem informasi klinik.
 
-## Teknologi yang Digunakan
+API ini menyediakan fitur:
+
+* Authentication Login JWT
+* Manajemen Pasien
+* Manajemen Dokter
+* Manajemen Jadwal Praktik
+* Manajemen Appointment (Janji Temu)
+* Manajemen Medical Record (Rekam Medis)
+* Log Aktivitas API
+
+---
+
+## 👨‍💻 Developer
+
+**Nama:** Didit Alfadilah
+
+**Program Studi:** Teknik Informatika
+
+**Universitas:** Universitas Bumi Gora
+
+---
+
+## 🛠️ Teknologi Yang Digunakan
 
 * Laravel 12
 * PHP 8+
 * MySQL
 * JWT Authentication
+* Composer
 * Postman
 * Git & GitHub
 
-## Fitur Utama
+---
 
-### Authentication
+# 📊 Entity Relationship Diagram (ERD)
 
-* Login
-* Logout
-* Refresh Token
-* Get Current User
-
-### Master Data
-
-* Province
-* City
-* District
-
-### Klinik Digital
-
-* Patient Management
-* Doctor Management
-* Schedule Management
-* Appointment Management
-* Medical Record Management
-
-### Monitoring
-
-* Activity Log API
-
-## Struktur Database
+## Tabel Utama
 
 ### Patients
 
-* id
-* nik
-* name
-* gender
-* birth_date
-* address
+| Field   | Type    |
+| ------- | ------- |
+| id      | bigint  |
+| nik     | varchar |
+| name    | varchar |
+| gender  | varchar |
+| phone   | varchar |
+| address | text    |
+
+---
 
 ### Doctors
 
-* id
-* name
-* specialist
-* phone
-* email
+| Field      | Type    |
+| ---------- | ------- |
+| id         | bigint  |
+| name       | varchar |
+| specialist | varchar |
+| phone      | varchar |
+| email      | varchar |
+
+---
 
 ### Schedules
 
-* id
-* doctor_id
-* day
-* start_time
-* end_time
+| Field      | Type    |
+| ---------- | ------- |
+| id         | bigint  |
+| doctor_id  | bigint  |
+| day        | varchar |
+| start_time | time    |
+| end_time   | time    |
+
+---
 
 ### Appointments
 
-* id
-* patient_id
-* doctor_id
-* schedule_id
-* appointment_date
-* status
+| Field            | Type   |
+| ---------------- | ------ |
+| id               | bigint |
+| patient_id       | bigint |
+| doctor_id        | bigint |
+| schedule_id      | bigint |
+| appointment_date | date   |
+| status           | enum   |
+
+---
 
 ### Medical Records
 
-* id
-* patient_id
-* doctor_id
-* appointment_id
-* complaint
-* diagnosis
-* treatment
+| Field          | Type   |
+| -------------- | ------ |
+| id             | bigint |
+| patient_id     | bigint |
+| doctor_id      | bigint |
+| appointment_id | bigint |
+| complaint      | text   |
+| diagnosis      | text   |
+| treatment      | text   |
 
-### Logs
+---
 
-* id
-* method
-* endpoint
-* request_data
-* response_data
-* status
+### Log Activity
 
-## API Endpoints
+| Field         | Type     |
+| ------------- | -------- |
+| id            | bigint   |
+| method        | varchar  |
+| endpoint      | varchar  |
+| request_data  | longtext |
+| response_data | longtext |
+| status        | integer  |
 
-### Authentication
+---
 
-| Method | Endpoint     |
-| ------ | ------------ |
-| POST   | /api/login   |
-| GET    | /api/logout  |
-| GET    | /api/me      |
-| GET    | /api/refresh |
+# 🔐 Authentication
 
-### Province
+## Login
 
-| Method | Endpoint           |
-| ------ | ------------------ |
-| GET    | /api/province      |
-| POST   | /api/province      |
-| GET    | /api/province/{id} |
-| PUT    | /api/province/{id} |
-| DELETE | /api/province/{id} |
+### Endpoint
 
-### City
+```http
+POST /api/login
+```
 
-| Method | Endpoint       |
-| ------ | -------------- |
-| GET    | /api/city      |
-| POST   | /api/city      |
-| GET    | /api/city/{id} |
-| PUT    | /api/city/{id} |
-| DELETE | /api/city/{id} |
+### Request
 
-### District
+```json
+{
+    "email": "fadididit@gmail.com",
+    "password": "170721"
+}
+```
 
-| Method | Endpoint           |
-| ------ | ------------------ |
-| GET    | /api/district      |
-| POST   | /api/district      |
-| GET    | /api/district/{id} |
-| PUT    | /api/district/{id} |
-| DELETE | /api/district/{id} |
+### Response
 
-### Patient
+```json
+{
+    "token": "jwt_token"
+}
+```
 
-| Method | Endpoint          |
-| ------ | ----------------- |
-| GET    | /api/patient      |
-| POST   | /api/patient      |
-| GET    | /api/patient/{id} |
-| PUT    | /api/patient/{id} |
-| DELETE | /api/patient/{id} |
+---
 
-### Doctor
+# 👨‍⚕️ Doctor API
 
-| Method | Endpoint         |
-| ------ | ---------------- |
-| GET    | /api/doctor      |
-| POST   | /api/doctor      |
-| GET    | /api/doctor/{id} |
-| PUT    | /api/doctor/{id} |
-| DELETE | /api/doctor/{id} |
+## Get All Doctors
 
-### Schedule
+```http
+GET /api/doctor
+```
 
-| Method | Endpoint           |
-| ------ | ------------------ |
-| GET    | /api/schedule      |
-| POST   | /api/schedule      |
-| GET    | /api/schedule/{id} |
-| PUT    | /api/schedule/{id} |
-| DELETE | /api/schedule/{id} |
+## Create Doctor
 
-### Appointment
+```http
+POST /api/doctor
+```
 
-| Method | Endpoint              |
-| ------ | --------------------- |
-| GET    | /api/appointment      |
-| POST   | /api/appointment      |
-| GET    | /api/appointment/{id} |
-| PUT    | /api/appointment/{id} |
-| DELETE | /api/appointment/{id} |
+```json
+{
+    "name": "Dr. Budi Santoso",
+    "specialist": "Dokter Umum",
+    "phone": "08123456789",
+    "email": "budi@gmail.com"
+}
+```
 
-### Medical Record
+---
 
-| Method | Endpoint                 |
-| ------ | ------------------------ |
-| GET    | /api/medical-record      |
-| POST   | /api/medical-record      |
-| GET    | /api/medical-record/{id} |
-| PUT    | /api/medical-record/{id} |
-| DELETE | /api/medical-record/{id} |
+# 🧑 Patient API
 
-## Instalasi
+## Get All Patients
 
-Clone repository:
+```http
+GET /api/patient
+```
+
+## Create Patient
+
+```http
+POST /api/patient
+```
+
+```json
+{
+    "nik": "5201010101010001",
+    "name": "Didit Alfadilah",
+    "gender": "L",
+    "phone": "081234567890",
+    "address": "Mataram"
+}
+```
+
+---
+
+# 📅 Schedule API
+
+## Get All Schedules
+
+```http
+GET /api/schedule
+```
+
+## Create Schedule
+
+```http
+POST /api/schedule
+```
+
+```json
+{
+    "doctor_id": 1,
+    "day": "Senin",
+    "start_time": "08:00:00",
+    "end_time": "12:00:00"
+}
+```
+
+---
+
+# 📋 Appointment API
+
+## Get All Appointments
+
+```http
+GET /api/appointment
+```
+
+## Create Appointment
+
+```http
+POST /api/appointment
+```
+
+```json
+{
+    "patient_id": 1,
+    "doctor_id": 1,
+    "schedule_id": 1,
+    "appointment_date": "2026-06-22",
+    "status": "pending"
+}
+```
+
+---
+
+# 🩺 Medical Record API
+
+## Get All Medical Records
+
+```http
+GET /api/medical-record
+```
+
+## Create Medical Record
+
+```http
+POST /api/medical-record
+```
+
+```json
+{
+    "patient_id": 1,
+    "doctor_id": 1,
+    "appointment_id": 1,
+    "complaint": "Sakit Kepala",
+    "diagnosis": "Influenza",
+    "treatment": "Paracetamol 3x sehari"
+}
+```
+
+---
+
+# 📈 API Log Activity
+
+Mencatat seluruh aktivitas API secara otomatis:
+
+* Login
+* Logout
+* Create Data
+* Update Data
+* Delete Data
+* Error Response
+* Unauthorized Access
+
+---
+
+# 🚀 Cara Menjalankan Project
+
+## Clone Repository
 
 ```bash
 git clone https://github.com/DiditAlfadilah/klinik-digital-webservice.git
 ```
 
-Masuk ke folder project:
+## Masuk Ke Folder
 
 ```bash
 cd klinik-digital-webservice
 ```
 
-Install dependency:
+## Install Dependency
 
 ```bash
 composer install
 ```
 
-Copy file environment:
+## Copy Environment
 
 ```bash
 cp .env.example .env
 ```
 
-Generate key:
+## Generate Key
 
 ```bash
 php artisan key:generate
 ```
 
-Konfigurasi database pada file .env
+## Generate JWT Secret
 
-Jalankan migrasi:
+```bash
+php artisan jwt:secret
+```
+
+## Migrasi Database
 
 ```bash
 php artisan migrate
 ```
 
-Jalankan server:
+## Jalankan Server
 
 ```bash
 php artisan serve
 ```
 
-## Pengembang
+---
 
-Nama : Didit Alfadilah
+# 📬 Testing API
 
-Program Studi : Teknik Informatika
+Gunakan Postman untuk melakukan pengujian endpoint API.
 
-Universitas : Universitas Bumigora
+Pastikan token JWT sudah ditambahkan pada Authorization Header:
 
-Tahun : 2026
+```text
+Bearer <token>
+```
 
-## Lisensi
+---
 
-Project ini dibuat untuk keperluan akademik dan pembelajaran.
+# 📄 Lisensi
+
+Project ini dibuat untuk memenuhi tugas UAS Mata Kuliah Web Service.
