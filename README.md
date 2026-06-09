@@ -1,58 +1,251 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Klinik Digital Web Service
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+REST API untuk sistem manajemen klinik digital yang dibangun menggunakan Laravel dan MySQL.
 
-## About Laravel
+## Deskripsi Proyek
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Klinik Digital Web Service adalah layanan REST API yang digunakan untuk mengelola data pasien, dokter, jadwal praktik, janji temu (appointment), rekam medis, serta aktivitas sistem.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Proyek ini dibuat untuk memenuhi tugas UAS Mata Kuliah Web Service.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Teknologi yang Digunakan
 
-## Learning Laravel
+* Laravel 12
+* PHP 8+
+* MySQL
+* JWT Authentication
+* Postman
+* Git & GitHub
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Fitur Utama
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Authentication
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* Login
+* Logout
+* Refresh Token
+* Get Current User
 
-## Agentic Development
+### Master Data
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+* Province
+* City
+* District
+
+### Klinik Digital
+
+* Patient Management
+* Doctor Management
+* Schedule Management
+* Appointment Management
+* Medical Record Management
+
+### Monitoring
+
+* Activity Log API
+
+## Struktur Database
+
+### Patients
+
+* id
+* nik
+* name
+* gender
+* birth_date
+* address
+
+### Doctors
+
+* id
+* name
+* specialist
+* phone
+* email
+
+### Schedules
+
+* id
+* doctor_id
+* day
+* start_time
+* end_time
+
+### Appointments
+
+* id
+* patient_id
+* doctor_id
+* schedule_id
+* appointment_date
+* status
+
+### Medical Records
+
+* id
+* patient_id
+* doctor_id
+* appointment_id
+* complaint
+* diagnosis
+* treatment
+
+### Logs
+
+* id
+* method
+* endpoint
+* request_data
+* response_data
+* status
+
+## API Endpoints
+
+### Authentication
+
+| Method | Endpoint     |
+| ------ | ------------ |
+| POST   | /api/login   |
+| GET    | /api/logout  |
+| GET    | /api/me      |
+| GET    | /api/refresh |
+
+### Province
+
+| Method | Endpoint           |
+| ------ | ------------------ |
+| GET    | /api/province      |
+| POST   | /api/province      |
+| GET    | /api/province/{id} |
+| PUT    | /api/province/{id} |
+| DELETE | /api/province/{id} |
+
+### City
+
+| Method | Endpoint       |
+| ------ | -------------- |
+| GET    | /api/city      |
+| POST   | /api/city      |
+| GET    | /api/city/{id} |
+| PUT    | /api/city/{id} |
+| DELETE | /api/city/{id} |
+
+### District
+
+| Method | Endpoint           |
+| ------ | ------------------ |
+| GET    | /api/district      |
+| POST   | /api/district      |
+| GET    | /api/district/{id} |
+| PUT    | /api/district/{id} |
+| DELETE | /api/district/{id} |
+
+### Patient
+
+| Method | Endpoint          |
+| ------ | ----------------- |
+| GET    | /api/patient      |
+| POST   | /api/patient      |
+| GET    | /api/patient/{id} |
+| PUT    | /api/patient/{id} |
+| DELETE | /api/patient/{id} |
+
+### Doctor
+
+| Method | Endpoint         |
+| ------ | ---------------- |
+| GET    | /api/doctor      |
+| POST   | /api/doctor      |
+| GET    | /api/doctor/{id} |
+| PUT    | /api/doctor/{id} |
+| DELETE | /api/doctor/{id} |
+
+### Schedule
+
+| Method | Endpoint           |
+| ------ | ------------------ |
+| GET    | /api/schedule      |
+| POST   | /api/schedule      |
+| GET    | /api/schedule/{id} |
+| PUT    | /api/schedule/{id} |
+| DELETE | /api/schedule/{id} |
+
+### Appointment
+
+| Method | Endpoint              |
+| ------ | --------------------- |
+| GET    | /api/appointment      |
+| POST   | /api/appointment      |
+| GET    | /api/appointment/{id} |
+| PUT    | /api/appointment/{id} |
+| DELETE | /api/appointment/{id} |
+
+### Medical Record
+
+| Method | Endpoint                 |
+| ------ | ------------------------ |
+| GET    | /api/medical-record      |
+| POST   | /api/medical-record      |
+| GET    | /api/medical-record/{id} |
+| PUT    | /api/medical-record/{id} |
+| DELETE | /api/medical-record/{id} |
+
+## Instalasi
+
+Clone repository:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/DiditAlfadilah/klinik-digital-webservice.git
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Masuk ke folder project:
 
-## Contributing
+```bash
+cd klinik-digital-webservice
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Install dependency:
 
-## Code of Conduct
+```bash
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Copy file environment:
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Generate key:
 
-## License
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Konfigurasi database pada file .env
+
+Jalankan migrasi:
+
+```bash
+php artisan migrate
+```
+
+Jalankan server:
+
+```bash
+php artisan serve
+```
+
+## Pengembang
+
+Nama : Didit Alfadilah
+
+Program Studi : Teknik Informatika
+
+Universitas : Universitas Bumigora
+
+Tahun : 2026
+
+## Lisensi
+
+Project ini dibuat untuk keperluan akademik dan pembelajaran.
