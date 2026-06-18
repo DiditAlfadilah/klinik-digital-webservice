@@ -7,7 +7,7 @@ Sistem Web Service Klinik Digital berbasis Laravel REST API yang digunakan untuk
 ## 👨‍💻 Identitas Mahasiswa
 
 * Nama : Didit Alfadilah
-* Mata Kuliah : Pemrograman Web Service
+* Mata Kuliah : Web Service
 * Program Studi : Rekayasa Perangkat Lunak
 * Universitas : Universitas Bumigora
 
@@ -15,14 +15,13 @@ Sistem Web Service Klinik Digital berbasis Laravel REST API yang digunakan untuk
 
 ## 📖 Deskripsi Proyek
 
-Klinik Digital Web Service merupakan layanan backend berbasis REST API yang digunakan untuk mendukung sistem informasi klinik digital.
-
-Web service ini menyediakan fitur:
+Klinik Digital Web Service merupakan layanan backend berbasiss REST API yang digunakan untuk mendukung sistem informasi klinik digital.
+Webb service inimenyediakann fitur:
 
 * Login Authentication (JWT)
 * Manajemen Data Pasien
 * Manajemen Data Dokter
-* Manajemen Jadwal Dokter
+* Manajemen Jadwa Dokterr
 * Manajemen Appointment
 * Manajemen Rekam Medis
 * Logging Aktivitas API
