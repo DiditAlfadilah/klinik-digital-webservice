@@ -7,8 +7,10 @@ Sistem Web Service Klinik Digital berbasis Laravel REST API yang digunakan untuk
 ## 👨‍💻 Identitas Mahasiswa
 
 * Nama : Didit Alfadilah
+* Nim : 2301040010
 * Mata Kuliah : Web Service
-* Program Studi : Rekayasa Perangkat Lunak
+* Prodi : Rekayasa Perangkat Lunak (RPL)
+* Program Studi : S1
 * Universitas : Universitas Bumigora
 
 ---
