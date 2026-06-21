@@ -18,7 +18,7 @@ Sistem Web Service Klinik Digital berbasis Laravel REST API yang digunakan untuk
 ## 📖 Deskripsi Proyek
 
 Klinik Digital Web Service merupakan layanan backend berbasiss REST API yang digunakan untuk mendukung sistem informasi klinik digital.
-Webb service inimenyediakann fitur:
+Webb service ini menyediakann fitur:
 
 * Register Authentication (JWT)
 * Login Authentication (JWT)
